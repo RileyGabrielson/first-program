@@ -1,0 +1,80 @@
+; ------- INTRO ------- 
+
+$class_id = 1
+$adventure_name = ""
+$health = 10
+$gold_amount = 0
+$user_input = ""
+$valid_input = 0
+
+? "What is your name?"
+GETS $adventure_name
+
+? "Choose your class class:"
+? "1: Warrior"
+? "2: Rogue"
+? "3: Wizard"
+GET $class_id
+
+; ------- MAIN LOOP ------- 
+
+DO
+  GOSUB "MainMenu"
+WHILE $user_input <> "q"
+
+? "Goodbye :)"
+QUIT
+
+; ------- UTILITIES ------- 
+
+:MainMenu
+GOSUB "DisplayStats"
+? " "
+? "What would you like to do?"
+? "1: Train with the Guild (20 Gold)"
+? "2: Enter the Dungeon"
+? "3: Heal (20 Gold)"
+GET $user_input
+
+IF $user_input = "1"
+  GOSUB "Train"  
+ELSE
+  IF $user_input = "2"
+    GOSUB "Dungeon"  
+  ELSE
+    IF $user_input = "3"
+      GOSUB "Heal"  
+    ELSE
+      IF $user_input = "q"
+        ; Do Nothing, quit in main menu
+      ELSE
+        ? "Invalid input, try again"
+      ENDIF
+    ENDIF
+  ENDIF
+ENDIF
+
+RETURN
+
+
+:DisplayStats
+? "Health"
+? $health
+? "Gold"
+? $gold_amount
+RETURN
+
+
+:Train
+? "TRAINING YO!"
+RETURN
+
+
+:Dungeon
+? "DUNGEON YO!"
+RETURN
+
+
+:Heal
+? "DUNGEON YO!"
+RETURN
