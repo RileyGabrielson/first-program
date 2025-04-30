@@ -5,22 +5,28 @@ $adventure_name = ""
 $health = 10
 $gold_amount = 0
 $user_input = ""
+$any_input = ""
 $valid_input = 0
 
+CLS
 ? "What is your name?"
+?
 GETS $adventure_name
 
-? "Choose your class class:"
+CLS
+? "Choose your class:"
 ? "1: Warrior"
 ? "2: Rogue"
 ? "3: Wizard"
+?
 GET $class_id
 
 ; ------- MAIN LOOP ------- 
 
-DO
-  GOSUB "MainMenu"
+CLS
 WHILE $user_input <> "q"
+  GOSUB "MainMenu"
+LOOP
 
 ? "Goodbye :)"
 QUIT
@@ -28,27 +34,33 @@ QUIT
 ; ------- UTILITIES ------- 
 
 :MainMenu
-GOSUB "DisplayStats"
-? " "
+CLS
 ? "What would you like to do?"
 ? "1: Train with the Guild (20 Gold)"
 ? "2: Enter the Dungeon"
 ? "3: Heal (20 Gold)"
+? "4: Show Stats"
+? "q: Quit"
+?
 GET $user_input
 
-IF $user_input = "1"
+IF $user_input == "1"
   GOSUB "Train"  
 ELSE
-  IF $user_input = "2"
+  IF $user_input == "2"
     GOSUB "Dungeon"  
   ELSE
-    IF $user_input = "3"
+    IF $user_input == "3"
       GOSUB "Heal"  
     ELSE
-      IF $user_input = "q"
-        ; Do Nothing, quit in main menu
+      IF $user_input == "4"
+        GOSUB "DisplayStats"  
       ELSE
-        ? "Invalid input, try again"
+        IF $user_input == "q"
+          ; Do Nothing, quit in main menu
+        ELSE
+          ? "Invalid input, try again"
+        ENDIF
       ENDIF
     ENDIF
   ENDIF
@@ -58,23 +70,35 @@ RETURN
 
 
 :DisplayStats
+CLS
 ? "Health"
 ? $health
 ? "Gold"
 ? $gold_amount
+?
+GET $any_input
 RETURN
 
 
 :Train
+CLS
 ? "TRAINING YO!"
+?
+GET $any_input
 RETURN
 
 
 :Dungeon
+CLS
 ? "DUNGEON YO!"
+?
+GET $any_input
 RETURN
 
 
 :Heal
-? "DUNGEON YO!"
+CLS
+? "Healing"
+?
+GET $any_input
 RETURN
