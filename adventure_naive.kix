@@ -1,7 +1,7 @@
 ; ------- INTRO ------- 
 
 $class_id = 1
-$adventure_name = ""
+$adventurer_name = ""
 $health = 10
 $gold_amount = 0
 $user_input = ""
@@ -11,7 +11,7 @@ $valid_input = 0
 CLS
 ? "What is your name?"
 ?
-GETS $adventure_name
+GETS $adventurer_name
 
 CLS
 ? "Choose your class:"
@@ -71,10 +71,19 @@ RETURN
 
 :DisplayStats
 CLS
-? "Health"
-? $health
-? "Gold"
-? $gold_amount
+
+IF $class_id == "1" 
+  ? "$adventurer_name the Warrior"
+ENDIF
+IF $class_id == "2" 
+  ? "$adventurer_name the Rogue"
+ENDIF
+IF $class_id == "3" 
+  ? "$adventurer_name the Wizard"
+ENDIF
+
+? "Health: $health"
+? "Gold: $gold_amount"
 ?
 GET $any_input
 RETURN
